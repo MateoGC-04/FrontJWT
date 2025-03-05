@@ -5,7 +5,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
     const errorMessage = document.getElementById("error-message");
     
     try {
-        const response = await fetch("https://tu-api.com/login", {
+        const response = await fetch("https://patroneauth-api-yflrmyosbm.us-east-1.fcapp.run", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
@@ -14,7 +14,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
         const data = await response.json();
         if (response.ok) {
             localStorage.setItem("token", data.token);
-            window.location.href = "dashboard.html"; // Redirigir al usuario
+            //window.location.href = "dashboard.html"; 
         } else {
             errorMessage.textContent = data.message;
         }
