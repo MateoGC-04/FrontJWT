@@ -13,11 +13,22 @@
         <button onclick="window.location.href='landing.html'">Volver</button>
     </div>
     <script>
-        const token = localStorage.getItem("token");
-        if (!token) {
+        const tokenB = localStorage.getItem("token");
+        fetch("https://patroneauth-api-yflrmyosbm.us-east-1.fcapp.run/rol-b", {
+            method: "GET",
+            headers: { "Authorization": `Bearer ${tokenB}` }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.message) {
+                alert("Acceso no autorizado");
+                window.location.href = "landing.html";
+            }
+        })
+        .catch(() => {
             alert("Acceso no autorizado");
             window.location.href = "landing.html";
-        }
+        });
     </script>
 </body>
 </html>

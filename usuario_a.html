@@ -14,10 +14,21 @@
     </div>
     <script>
         const token = localStorage.getItem("token");
-        if (!token) {
+        fetch("https://patroneauth-api-yflrmyosbm.us-east-1.fcapp.run/rol-a", {
+            method: "GET",
+            headers: { "Authorization": `Bearer ${token}` }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.message) {
+                alert("Acceso no autorizado");
+                window.location.href = "landing.html";
+            }
+        })
+        .catch(() => {
             alert("Acceso no autorizado");
             window.location.href = "landing.html";
-        }
+        });
     </script>
 </body>
 </html>
