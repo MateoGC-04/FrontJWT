@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing</title>
+    <link rel="stylesheet">
+</head>
+<body>
+    <h1>Bienvenido a la plataforma</h1>
+    <p>Acceso permitido a usuarios con rol A o B.</p>
+    <button onclick="redirigirSegunRol()">Ir a mi sección</button>
+    <script>
+        function redirigirSegunRol() {
+            const role = localStorage.getItem("userRole");
+            if (role === "ROLE_A") {
+                window.location.href = "usuario_a.html";
+            } else if (role === "ROLE_B") {
+                window.location.href = "usuario_b.html";
+            }
+        }
+    </script>
+</body>
+</html>
