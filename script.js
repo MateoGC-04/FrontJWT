@@ -5,7 +5,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
     const errorMessage = document.getElementById("error-message");
     
     try {
-        const response = await fetch("https://patroneauth-api-yflrmyosbm.us-east-1.fcapp.run", {
+        const response = await fetch("https://patroneauth-api-yflrmyosbm.us-east-1.fcapp.run/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
