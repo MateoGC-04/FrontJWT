@@ -7,18 +7,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Bienvenido a la plataforma</h1>
-    <p>Acceso permitido a usuarios con rol A o B.</p>
-    <button onclick="redirigirSegunRol()">Ir a mi sección</button>
-    <script>
-        function redirigirSegunRol() {
-            const role = localStorage.getItem("userRole");
-            if (role === "ROLE_A") {
-                window.location.href = "usuario_a.html";
-            } else if (role === "ROLE_B") {
-                window.location.href = "usuario_b.html";
-            }
-        }
-    </script>
+    <div class="landing-container">
+        <h1>Bienvenido a la plataforma</h1>
+        <p>Puedes intentar acceder a las siguientes secciones:</p>
+        <button onclick="window.location.href='usuario_a.html'">Ir a Sección A</button>
+        <button onclick="window.location.href='usuario_b.html'">Ir a Sección B</button>
+    </div>
 </body>
 </html>

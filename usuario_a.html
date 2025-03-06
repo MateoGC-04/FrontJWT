@@ -7,8 +7,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Bienvenido Usuario A</h1>
-    <p>Acceso exclusivo para usuarios con rol A.</p>
-    <button onclick="window.location.href='landing.html'">Volver</button>
+    <div class="role-container">
+        <h1>Bienvenido Usuario A</h1>
+        <p>Acceso exclusivo para usuarios con rol A.</p>
+        <button onclick="window.location.href='landing.html'">Volver</button>
+    </div>
+    <script>
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("Acceso no autorizado");
+            window.location.href = "landing.html";
+        }
+    </script>
 </body>
 </html>
