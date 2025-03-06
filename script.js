@@ -44,9 +44,9 @@ document.getElementById("login-form").addEventListener("submit", async function(
         localStorage.setItem("token", data.token);
         console.log("Login exitoso, token guardado:", data);
         errorMessage.textContent = "Login exitoso!";
+        const payload = JSON.parse(atob(data.token.split(".")[1]));
+        localStorage.setItem("userRole", payload.role);
         window.location.href = "landing.html";
-        // Descomentar para redirigir al dashboard
-        // window.location.href = "dashboard.html";
         
     } catch (error) {
         console.error("Error de conexión:", error);
