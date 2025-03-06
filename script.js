@@ -44,7 +44,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
         localStorage.setItem("token", data.token);
         console.log("Login exitoso, token guardado:", data);
         errorMessage.textContent = "Login exitoso!";
-        
+        window.location.href = "landing.html";
         // Descomentar para redirigir al dashboard
         // window.location.href = "dashboard.html";
         
