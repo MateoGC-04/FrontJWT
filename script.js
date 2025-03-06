@@ -7,18 +7,36 @@ document.getElementById("login-form").addEventListener("submit", async function(
     try {
         const response = await fetch("https://patroneauth-api-yflrmyosbm.us-east-1.fcapp.run/login", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            mode: "cors", // Especificar explícitamente el modo CORS
+            credentials: "same-origin", // Manejo de credenciales
             body: JSON.stringify({ username, password })
         });
         
-        const data = await response.json();
-        if (response.ok) {
-            localStorage.setItem("token", data.token);
-            //window.location.href = "dashboard.html"; 
-        } else {
-            errorMessage.textContent = data.message;
+        if (!response.ok) {
+            // Manejar respuestas de error HTTP (400, 401, 500, etc.)
+            const errorData = await response.json().catch(() => ({
+                detail: `Error HTTP: ${response.status} ${response.statusText}`
+            }));
+            errorMessage.textContent = errorData.detail || "Error en la autenticación";
+            console.error("Error de respuesta:", errorData);
+            return;
         }
+
+        // Procesar respuesta exitosa
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        console.log("Login exitoso, token guardado");
+        errorMessage.textContent = ""; // Limpiar cualquier mensaje de error
+        
+        // Descomentar para redirigir al dashboard
+        // window.location.href = "dashboard.html";
+        
     } catch (error) {
-        errorMessage.textContent = "Error de conexión";
+        console.error("Error de conexión:", error);
+        errorMessage.textContent = "Error de conexión al servidor. Verifica tu conexión a internet.";
     }
 });
